@@ -122,7 +122,28 @@ public class Streams {
         String result= inputStr.stream().collect(Collectors.groupingBy(st->st,LinkedHashMap::new,Collectors.counting()))
                 .entrySet().stream()
                 .filter(entry->entry.getValue() ==1)
-                .map(entry->entry.getKey()).findFirst().orElse(null);;
+                .map(entry->entry.getKey()).findFirst().orElse(null);
+
+        // 23. count the total number of distinct words (case-insensitive) in all the sentences
+        List<String> sentences = Arrays.asList(
+                "Java Stream API provides a fluent interface for processing sequences of elements.",
+                "It supports functional-style operations on streams of elements, such as map-reduce transformations.",
+                "In this exercise, you need to count the total number of words in all sentences."
+        );
+
+        long result1 = sentences.stream()
+                .flatMap(s -> Arrays.stream(s.trim().split("\\s+")))
+                .map(String::toLowerCase)
+                .distinct()
+                .count();
+
+        // 24. find the concatenation of the first two words that have even lengths.
+        List<String> words = Arrays.asList("apple", "banana", "cherry", "date", "elderberry");
+
+
+        // 25. find the sum of the squares of even numbers in the list
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
 
 
         System.out.println(result);
